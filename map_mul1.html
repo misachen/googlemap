@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Using closures in event listeners</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  </head>
+  <body>
+    <div id="map"></div>
+    <div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content" style="background: black;color:#14f0f2">
+          <div class="modal-header" style="color: #fff;">
+            <button type="button" class="close" style="color: #fff;opacity: .8" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body row" style="margin: 0px;">
+              <div class="col-md-6" style="border-radius: 10px;border-style: solid;border-color: #fff;"><h4 style="text-align:center;color:#fff">車速 km/h</h4><h1 id="speed" style="text-align:center;"></h1></div>
+              <div class="col-md-6" style="border-radius: 10px;border-style: solid;border-color: #fff;"><h4 style="text-align:center;color:#fff">轉速 </h4><h1 id="rotating" style="text-align:center;"></h1></div>
+              <div class="col-md-6" style="border-radius: 10px;border-style: solid;border-color: #fff;"><h4 style="text-align:center;color:#fff">經度</h4><h1 id="lat" style="text-align:center;"></h1></div>
+              <div class="col-md-6" style="border-radius: 10px;border-style: solid;border-color: #fff;"><h4 style="text-align:center;color:#fff">緯度</h4><h1 id="long" style="text-align:center;"></h1></div>
+              <div class="col-md-12" style="border-radius: 10px;border-style: solid;border-color: #fff;"><h4 style="text-align:center;color:#fff">乘客</h4><h3 id="person" style="text-align:center;"></h3></div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>  
+    <script>
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: {lat: 33.890542, lng: 151.274856 }
+        });
+        
+
+
+        var locations = [
+          ['Bus1', 25.078924, 121.564334, 4,'30','30'],
+          ['Bus2', 25.080584, 121.564956, 5,'40','40'],
+          ['Bus3', 25.079764, 121.567465, 3,'50','50'],
+        ];
+      
+
+
+        // Display the area between the location southWest and northEast.
+        // map.fitBounds(bounds);
+
+        // Add 5 markers to map at random locations.
+        // For each of these markers, give them a title with their index, and when
+        // they are clicked they should open an infowindow with text from a secret
+        // message.
+
+        var image = {
+              url: "bus_yellow.png", 
+              scaledSize: new google.maps.Size(50, 50), // scaled size
+              origin: new google.maps.Point(0,0), // origin
+              anchor: new google.maps.Point(0, 0) // anchor
+          };
+  
+
+        for (var i = 0; i < locations.length; ++i) {
+  
+          var bus_number = locations[i][0];
+          var lat = locations[i][1];
+          var long = locations[i][2];
+          var add = locations[i][3];
+          var speed = locations[i][4];
+          var rotating = locations[i][5];
+          var person='DuranHuang、MisaChen、JudyLiu';
+
+
+          var latlngset = new google.maps.LatLng(lat, long);
+          var marker = new google.maps.Marker({
+              map: map,
+              title: bus_number,
+              position: latlngset,
+              icon: image,
+          });
+          map.setCenter(marker.getPosition())
+          attachSecretMessage(marker, bus_number,speed,rotating,lat,long,person);
+        }
+      }
+
+      // Attaches an info window to a marker with the provided message. When the
+      // marker is clicked, the info window will open with the secret message.
+      function attachSecretMessage(marker, secretMessage,speed,rotating,lat,long,person) {
+        var infowindow = new google.maps.InfoWindow({
+          content: secretMessage
+        });
+
+        marker.addListener('click', function() {
+          
+            $('#myModal').modal('show');
+            $('.modal-header h4').text(secretMessage);
+            $('.modal-body div #speed').text(speed);
+            $('.modal-body div #rotating').text(rotating);
+            $('.modal-body div #lat').text(lat);
+            $('.modal-body div #long').text(long);
+            $('.modal-body div #person').text(person);
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTLb6-ZAke6e5W8G_fh7heuHpX7SZ1LU&callback=initMap">
+    </script>
+  </body>
+</html>

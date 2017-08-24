@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+</head>
+
+<body onload="initialize()">
+  <div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+          <div class="modal-header">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="bus_name"></h4> -->
+          </div>
+          <div class="modal-body">
+            <!-- <p>Some text in the modal.</p> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div id="default" style="width:100%; height:100%"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTLb6-ZAke6e5W8G_fh7heuHpX7SZ1LU"
+    async defer></script>
+    <script>  
+      var locations = [
+          ['Bus1', 25.078924, 121.564334, 4],
+          ['Bus2', 25.080584, 121.564956, 5],
+          ['Bus3', 25.079764, 121.567465, 3],
+      ];
+    
+      
+      function initialize() {
+
+          var myOptions = {
+              center: new google.maps.LatLng(33.890542, 151.274856),
+              zoom: 17,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+
+          };
+          var map = new google.maps.Map(document.getElementById("default"),
+              myOptions);
+
+          setMarkers(map, locations)
+
+      }
+
+
+
+      function setMarkers(map, locations) {
+
+          var marker, i
+          var image = {
+              url: "bus_yellow.png", 
+              scaledSize: new google.maps.Size(50, 50), // scaled size
+              origin: new google.maps.Point(0,0), // origin
+              anchor: new google.maps.Point(0, 0) // anchor
+          };
+          for (i = 0; i < locations.length; i++) {
+
+              var bus_number = locations[i][0];
+              var lat = locations[i][1];
+              var long = locations[i][2];
+              var add = locations[i][3];
+
+              var latlngset = new google.maps.LatLng(lat, long);
+
+              var marker = new google.maps.Marker({
+                  map: map,
+                  title: bus_number,
+                  position: latlngset,
+                  icon: image,
+              });
+              map.setCenter(marker.getPosition())
+         
+              
+              var title = '<button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title" id="bus_name">'+locations[i][0]+'</h4>' ;
+              var content = '<p><b>車速</b>：30 km/h<br><b>轉速</b>：<br><b>經度</b>：25.080395350503366 <br><b>緯度</b>：121.56465787466263<br><b>乘客</b>：DuranHuang、MisaChen、JudyLiu<br>' ;
+
+              var infowindow = new google.maps.InfoWindow();
+
+              google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                  return function() {
+                      infowindow.setContent(content);
+                      infowindow.open(map, marker);
+                     
+                  };
+              })(marker, content, infowindow));
+
+              
+          }
+      }
+      </script>
+    
+</body>
+
+</html>
