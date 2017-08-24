@@ -122,10 +122,12 @@
         <div id="PhotoShow">
                     <div class="player">
                         <ul class="list">
-                            <li><img src="" alt="" id="img1"></li>
-                            <li><img src="" alt="" id="img2"></li>
-                            <li><img src="" alt="" id="img3"></li>
-                            
+                            <!-- <li><img src="" alt="" ></li>
+                            <li><img src="" alt=""></li> -->
+                            <!-- <li><img src="https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF" alt=""></li> -->
+                            <!-- <li style="background:url(https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20246280_10207479659668835_8144346973406688201_n.jpg?oh=fab3988106db2e6378fc3520b2fda4ab&oe=5A1737A1) bottom center no-repeat">
+                                <li style="background:url(https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/14102677_10205252383788330_2999367716280693541_n.jpg?oh=e8915747ebc7db3ca000a38c2fd413a3&oe=5A21C418) center center no-repeat">
+                                    <li style="background:url(https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF) center center no-repeat"> -->
                                         
                         </ul>
                     </div>
@@ -156,7 +158,7 @@
                         timer, _showSpeed = 3000,
                         _stop = false;
                         // alert($('#map').height());
-                    $('#PhotoShow ul.list li img').css('height',menu_h);
+                    $('#PhotoShow ul.list').css('height',menu_h);
                     $block.css('height', menu_h);
                     $slides.css('width', ($li.length) * _width);
                     $li.css('width', _width);
@@ -201,8 +203,8 @@ span.onclick = function() {
         var locations = [
           
           
-          ['Bus2', 23.01087, 120.666, 'https://c1.staticflickr.com/1/560/31012631143_b55cfd4dfa_b.jpg','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20246280_10207479659668835_8144346973406688201_n.jpg?oh=fab3988106db2e6378fc3520b2fda4ab&oe=5A1737A1','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20638845_10207563573686633_324476731449158020_n.jpg?oh=f1c5e9257ad1a9830bfb220308214005&oe=5A239924'],
-          ['Bus3', 25.079764, 121.567465, 'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20638260_10207563424922914_2142098391402199914_n.jpg?oh=19bd99e6528c6e64ed356ca10b508b8d&oe=5A341108','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/14102677_10205252383788330_2999367716280693541_n.jpg?oh=e8915747ebc7db3ca000a38c2fd413a3&oe=5A21C418','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20663954_10207563572926614_8905068095487814006_n.jpg?oh=6412a730e8cddd38b3920936bca4f0eb&oe=5A1DAACF'],
+          ['Bus2', 23.01087, 120.666, 5,['https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF'],'40'],
+          ['Bus3', 25.079764, 121.567465, 3,['https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/1463523_10203898253095909_895559713530749746_n.jpg?oh=181af31f3f9186cdd5553aa1e1bc84d6&oe=5A1F4CBF'],'50'],
         ];
 
 
@@ -233,6 +235,9 @@ span.onclick = function() {
           var rotating = locations[i][5];
           var person='DuranHuang、MisaChen、JudyLiu';
 
+          var speedlength = locations[i][4].length;
+          
+
 
           var latlngset = new google.maps.LatLng(lat, long);
           var marker = new google.maps.Marker({
@@ -242,25 +247,33 @@ span.onclick = function() {
               // icon: image,
           });
           map.setCenter(marker.getPosition())
-          attachSecretMessage(marker, bus_number,speed,rotating,lat,long,person,add);
+          attachSecretMessage(marker, bus_number,speed,rotating,lat,long,person,speedlength);
         }
       }
 
       // Attaches an info window to a marker with the provided message. When the
       // marker is clicked, the info window will open with the secret message.
-      function attachSecretMessage(marker, secretMessage,speed,rotating,lat,long,person,add) {
+      function attachSecretMessage(marker, secretMessage,speed,rotating,lat,long,person,speedlength) {
         var infowindow = new google.maps.InfoWindow({
           content: secretMessage
         });
 
         marker.addListener('click', function() {
           
+            var wit=$('#map').width();
+            var menu_h = $('#menu').height();
             $('#myModal').modal('show');
-            
-            $('#PhotoShow #img1').attr("src",speed);
-            $('#PhotoShow #img2').attr("src",rotating);
-            $('#PhotoShow #img3').attr("src",add);
+            for (var i = 0; i < speedlength; ++i) {
+                $('#PhotoShow ul.list').append("<li><img src='"+speed[i]+"' alt='' style='width:"+wit+"px;height:"+menu_h+"px' ></li>");
+                 // $('#PhotoShow ul.list li img').attr("src",speed);
+            }
            
+            // $('.modal-header h4').text(secretMessage);
+            // $('.modal-body div #speed').text(speed);
+            // $('.modal-body div #rotating').text(rotating);
+            // $('.modal-body div #lat').text(lat);
+            // $('.modal-body div #long').text(long);
+            // $('.modal-body div #person').text(person);
         });
       }
     </script>
