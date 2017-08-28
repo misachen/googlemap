@@ -139,6 +139,7 @@
                   </div> 
           
           <!-- <div id="caption"></div> -->
+
         </div> 
       
     </div>  
@@ -158,7 +159,7 @@
                         _animateSpeed = 600,
                         timer, _showSpeed = 3000,
                         _stop = false;
-                        // alert($('#map').height());
+                        
                     $('#PhotoShow ul.list li img').css('height',menu_h);
                     $block.css('height', menu_h);
                     $slides.css('width', ($li.length) * _width);
@@ -200,12 +201,25 @@ span.onclick = function() {
 
        
 
-        
         var locations = [
           
           
-          ['Bus2', 23.01087, 120.666, 'https://images.pexels.com/photos/121792/pexels-photo-121792.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20246280_10207479659668835_8144346973406688201_n.jpg?oh=fab3988106db2e6378fc3520b2fda4ab&oe=5A1737A1','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20638845_10207563573686633_324476731449158020_n.jpg?oh=f1c5e9257ad1a9830bfb220308214005&oe=5A239924'],
-          ['Bus3', 25.079764, 121.567465, 'https://images.pexels.com/photos/112392/pexels-photo-112392.jpeg?w=940&h=650&auto=compress&cs=tinysrgb','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/14102677_10205252383788330_2999367716280693541_n.jpg?oh=e8915747ebc7db3ca000a38c2fd413a3&oe=5A21C418','https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/20663954_10207563572926614_8905068095487814006_n.jpg?oh=6412a730e8cddd38b3920936bca4f0eb&oe=5A1DAACF'],
+          ['Little Ryukyu', 22.3388454, 120.3537551, 'https://farm5.staticflickr.com/4435/36021568394_a808628ea3_b.jpg','https://farm5.staticflickr.com/4354/36021572514_bb4efcecbb_k.jpg','https://farm5.staticflickr.com/4423/36021567434_2d97a4d910_k.jpg'],
+          ['taipei', 25.079764, 121.567465, 'https://farm5.staticflickr.com/4333/36459604690_ecd2aa4001_b.jpg','https://farm5.staticflickr.com/4399/36047267863_ecd86bbce8_b.jpg','https://farm5.staticflickr.com/4375/36716611501_d892813946_b.jpg'],
+          ['Taitung', 22.7482925,121.0803034, 'https://farm5.staticflickr.com/4415/36021537894_bd6f4c8f3e_b.jpg','https://farm5.staticflickr.com/4370/36047254943_4f80e66411_b.jpg','https://farm5.staticflickr.com/4386/36856009405_beede0d048_b.jpg'],
+          ['Tainan', 23.1366868,120.4266653, 'https://farm5.staticflickr.com/4397/36716604401_46c6acf0ec_b.jpg','https://farm5.staticflickr.com/4366/36459566890_2c998650a7_b.jpg','https://farm5.staticflickr.com/4388/36716601231_004497d21d_b.jpg'],
+          ['Hualien', 23.9943108,121.567418, 'https://farm5.staticflickr.com/4407/36856095695_9e6b5f0ba3_b.jpg','https://farm5.staticflickr.com/4439/36856089295_abdb096333_b.jpg','https://farm5.staticflickr.com/4412/36459644300_c59d6e15d0_b.jpg'],
+          ['Nantou', 24.0522683,121.1532639, 'https://farm5.staticflickr.com/4409/36459557440_c9d3698125_z.jpg','https://farm5.staticflickr.com/4404/36021557914_0813bffe02_b.jpg','https://farm5.staticflickr.com/4405/36459612180_95f037566d_b.jpg'],
+          ['Pingtung', 21.9465664,120.7899582, 'https://farm5.staticflickr.com/4377/36716567291_7d54043f23_z.jpg','https://farm5.staticflickr.com/4368/36855941065_7643e84538_z.jpg','https://farm5.staticflickr.com/4377/36716575241_031d836472_z.jpg'],
+          ['Miaoli', 24.3584432,120.7716464, 'https://farm5.staticflickr.com/4371/36856046895_2cd34ac2c7_z.jpg','https://farm5.staticflickr.com/4347/36855973115_e1e0b04389_z.jpg','https://farm5.staticflickr.com/4360/36047202653_9c1b6af35a_z.jpg'],
+          ['Kaohsiung', 22.687675,120.3062132, 'https://farm5.staticflickr.com/4401/36021584514_42665b79d1_z.jpg','https://farm5.staticflickr.com/4439/36459639980_8e9243bc7c_z.jpg','https://farm5.staticflickr.com/4440/36459549020_ae83f9a7fb_z.jpg'],
+          ['Keelung', 25.1458108,121.7954349, 'https://farm5.staticflickr.com/4425/36716595781_8a54cd1949_z.jpg','https://farm5.staticflickr.com/4388/36021576294_c551fafb6e_z.jpg','https://farm5.staticflickr.com/4336/36716712301_157184e7ce_z.jpg'],
+          ['Yunlin', 23.6170588,120.5742475, 'https://farm5.staticflickr.com/4368/36047248013_cb25aff077_z.jpg','https://farm5.staticflickr.com/4373/36021518664_2199b92aa4_z.jpg','https://farm5.staticflickr.com/4398/36047241653_d4c7dc5d68_z.jpg'],
+          ['Chiayi', 23.4494323,120.6597009, 'https://farm5.staticflickr.com/4395/36021602414_456732c69b_z.jpg','https://farm5.staticflickr.com/4367/36716584151_18e11afcc3_z.jpg','https://farm5.staticflickr.com/4394/36855956195_9b9e90d0a8_z.jpg'],
+          ['GreenIsland', 22.6563162,121.4711554, 'https://farm5.staticflickr.com/4347/36459672530_a2b45c31f9_z.jpg','https://farm5.staticflickr.com/4405/36459553940_e57f7a80a0_z.jpg','https://farm5.staticflickr.com/4430/36856098635_c7b6b57ee1_z.jpg'],
+          ['Penghu', 23.6578236,119.5523503, 'https://farm5.staticflickr.com/4409/36021554734_661426a293_z.jpg','https://farm5.staticflickr.com/4337/36459608400_4126819971_z.jpg','https://farm5.staticflickr.com/4385/36021548394_e119c939ec_z.jpg'],
+
+          
         ];
 
 
