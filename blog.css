@@ -311,7 +311,11 @@ li {
     -o-background-size: cover !important;
     background-size: cover !important
 }
-
+@media screen and (max-width: 768px){
+    .player ul.list li {
+        height: auto;
+    }
+}
 .player ul.list img {
     width: 100%;
     height: auto;
@@ -1265,7 +1269,7 @@ li {
 	/*display: none;*/
 }
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1440px) {
     body {
         min-width: 1000px
     }
