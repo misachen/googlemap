@@ -122,12 +122,19 @@ span.onclick = function() {
     $('#myModal').modal('hide');
 }
       function initMap() {
+        var chicago = new google.maps.LatLng(22.177661, 123.929381);
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 7,
           center: {lat: 23.975649, lng: 120.97388 }
         });
         
-       
+        var contentString='親愛的小尼：<br>今天是七夕情人節，今年不做卡片，改作網站！<br>是不是比就有創意？<br>這次用google map地圖放上我們去過的景點的照片<br>我們一起去過好多地方！<br>台灣到處都有我們的足跡<br>希望未來連國外也能有我們的身影！<br>快去回味一下我們去過的地方吧❤️';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+        infowindow.setPosition(chicago);
+        infowindow.open(map);
+
         
         var locations = [
           
